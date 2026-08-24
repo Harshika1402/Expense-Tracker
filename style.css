@@ -758,6 +758,22 @@ kbd {
   color: var(--text-primary);
 }
 
+/* ===== Footer ===== */
+.app-footer {
+  text-align: center;
+  padding: 18px 20px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-sep { opacity: 0.5; }
+
 /* ===== Print Styles ===== */
 @media print {
   .header, .form-card, .search-wrap,

@@ -256,6 +256,15 @@ function updateSummary() {
   card.classList.remove('balance-positive', 'balance-negative');
   if (balance > 0) card.classList.add('balance-positive');
   else if (balance < 0) card.classList.add('balance-negative');
+
+  // Update footer
+  const count = transactions.length;
+  document.getElementById('footerCount').textContent =
+    count + ' transaction' + (count !== 1 ? 's' : '');
+  const rate = income > 0 ? Math.round(((income - expense) / income) * 100) : 0;
+  document.getElementById('savingsRate').textContent = rate + '%';
+  document.getElementById('savingsRate').style.color =
+    rate >= 0 ? 'var(--income)' : 'var(--expense)';
 }
 
 // ===== Monthly Summary =====
