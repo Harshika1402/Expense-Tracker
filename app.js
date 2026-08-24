@@ -14,6 +14,7 @@ const incomeBtn     = document.getElementById('incomeBtn');
 const expenseBtn    = document.getElementById('expenseBtn');
 const txList        = document.getElementById('transactionList');
 const emptyState    = document.getElementById('emptyState');
+const noResults     = document.getElementById('noResults');
 const exportBtn     = document.getElementById('exportBtn');
 const clearAllBtn   = document.getElementById('clearAllBtn');
 const filterCat     = document.getElementById('filterCategory');
@@ -317,9 +318,17 @@ function renderList() {
   txCountBadge.textContent = filtered.length || '';
 
   if (filtered.length === 0) {
-    emptyState.style.display = 'block';
+    // Distinguish: no data at all vs filtered to zero
+    if (transactions.length === 0) {
+      emptyState.style.display = 'block';
+      noResults.style.display  = 'none';
+    } else {
+      emptyState.style.display = 'none';
+      noResults.style.display  = 'block';
+    }
   } else {
     emptyState.style.display = 'none';
+    noResults.style.display  = 'none';
     filtered.forEach(t => {
       const li = document.createElement('li');
       li.className = `transaction-item ${t.type}-item`;
