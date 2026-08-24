@@ -22,6 +22,7 @@ const totalIncome   = document.getElementById('totalIncome');
 const totalExpense  = document.getElementById('totalExpense');
 const toast         = document.getElementById('toast');
 const searchInput   = document.getElementById('searchInput');
+const txCountBadge  = document.getElementById('txCount');
 
 // ===== Helpers =====
 function saveData() {
@@ -227,6 +228,7 @@ function renderList() {
 
   // Remove existing items (keep empty state)
   txList.querySelectorAll('.transaction-item').forEach(el => el.remove());
+  txCountBadge.textContent = filtered.length || '';
 
   if (filtered.length === 0) {
     emptyState.style.display = 'block';
