@@ -31,6 +31,17 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   line-height: 1.5;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --border: #2d3148;
+  --text-primary: #e8eaf0;
+  --text-secondary: #8b93b0;
+  --shadow: 0 1px 4px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
 }
 
 /* ===== Header ===== */
@@ -63,6 +74,25 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.btn-icon {
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  width: 36px;
+  height: 36px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.btn-icon:hover {
+  background: var(--bg);
+  border-color: var(--accent);
 }
 
 .btn-export {

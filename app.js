@@ -2,6 +2,7 @@
 let transactions = JSON.parse(localStorage.getItem('et_transactions')) || [];
 let currentType = 'income';
 
+
 // ===== DOM References =====
 const form          = document.getElementById('transactionForm');
 const descInput     = document.getElementById('description');
@@ -24,6 +25,19 @@ const toast         = document.getElementById('toast');
 const searchInput   = document.getElementById('searchInput');
 const txCountBadge  = document.getElementById('txCount');
 const sortOrder     = document.getElementById('sortOrder');
+const darkModeBtn   = document.getElementById('darkModeBtn');
+
+// ===== Dark Mode =====
+if (localStorage.getItem('et_dark') === 'true') {
+  document.body.classList.add('dark');
+  darkModeBtn.textContent = '☀️';
+}
+
+darkModeBtn.addEventListener('click', () => {
+  const isDark = document.body.classList.toggle('dark');
+  darkModeBtn.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('et_dark', isDark);
+});
 
 // ===== Helpers =====
 function saveData() {
