@@ -352,3 +352,22 @@ function renderAll() {
 
 // ===== Init =====
 renderAll();
+
+// ===== Keyboard Shortcuts =====
+document.addEventListener('keydown', (e) => {
+  // Alt+N → focus description (new transaction)
+  if (e.altKey && e.key === 'n') {
+    e.preventDefault();
+    descInput.focus();
+    descInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  // Alt+E → focus search
+  if (e.altKey && e.key === 'e') {
+    e.preventDefault();
+    searchInput.focus();
+  }
+  // Escape → close confirm modal
+  if (e.key === 'Escape') {
+    document.getElementById('confirmOverlay').hidden = true;
+  }
+});

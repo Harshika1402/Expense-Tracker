@@ -406,6 +406,24 @@ body.dark {
   transform: translateY(0);
 }
 
+.shortcut-hint {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+kbd {
+  display: inline-block;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--text-primary);
+}
+
 .btn-danger {
   padding: 8px 16px;
   background: transparent;
