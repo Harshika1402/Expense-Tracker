@@ -66,6 +66,30 @@ function setType(type) {
   }
 }
 
+// ===== Live Validation (clear errors as user types) =====
+descInput.addEventListener('input', () => {
+  if (descInput.value.trim()) {
+    descInput.classList.remove('invalid');
+    document.getElementById('descError').classList.remove('visible');
+  }
+});
+
+amtInput.addEventListener('input', () => {
+  const v = parseFloat(amtInput.value);
+  if (amtInput.value && !isNaN(v) && v > 0) {
+    amtInput.classList.remove('invalid');
+    document.getElementById('amtError').classList.remove('visible');
+  }
+});
+
+// Press Enter in description → jump to amount
+descInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    amtInput.focus();
+  }
+});
+
 // ===== Set default date =====
 function setDefaultDate() {
   const today = new Date();
