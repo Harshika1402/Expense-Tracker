@@ -23,6 +23,7 @@ const totalExpense  = document.getElementById('totalExpense');
 const toast         = document.getElementById('toast');
 const searchInput   = document.getElementById('searchInput');
 const txCountBadge  = document.getElementById('txCount');
+const sortOrder     = document.getElementById('sortOrder');
 
 // ===== Helpers =====
 function saveData() {
@@ -201,6 +202,7 @@ exportBtn.addEventListener('click', () => {
 filterCat.addEventListener('change', renderList);
 filterType.addEventListener('change', renderList);
 searchInput.addEventListener('input', renderList);
+sortOrder.addEventListener('change', renderList);
 
 // ===== Update Summary =====
 function updateSummary() {
@@ -224,6 +226,16 @@ function renderList() {
     const matchType   = typeFilter === 'All' || t.type === typeFilter;
     const matchSearch = !searchQuery || t.description.toLowerCase().includes(searchQuery);
     return matchCat && matchType && matchSearch;
+  });
+
+  // Sort
+  const sort = sortOrder.value;
+  filtered.sort((a, b) => {
+    if (sort === 'newest') return new Date(b.date) - new Date(a.date);
+    if (sort === 'oldest') return new Date(a.date) - new Date(b.date);
+    if (sort === 'highest') return b.amount - a.amount;
+    if (sort === 'lowest')  return a.amount - b.amount;
+    return 0;
   });
 
   // Remove existing items (keep empty state)
