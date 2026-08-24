@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A simple and clean expense tracker to manage your daily income and expenses." />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <span class="logo">💰 Expense Tracker</span>
+      <button id="clearAllBtn" class="btn-danger">Clear All</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Balance Card -->
+    <section class="balance-card" aria-label="Total Balance">
+      <p class="balance-label">Total Balance</p>
+      <h1 id="totalBalance" class="balance-amount">₹0.00</h1>
+      <div class="balance-stats">
+        <div class="stat income-stat">
+          <span class="stat-icon">↑</span>
+          <div>
+            <p class="stat-label">Income</p>
+            <p id="totalIncome" class="stat-value income-value">₹0.00</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="stat expense-stat">
+          <span class="stat-icon">↓</span>
+          <div>
+            <p class="stat-label">Expenses</p>
+            <p id="totalExpense" class="stat-value expense-value">₹0.00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-grid">
+
+      <!-- Add Transaction Form -->
+      <section class="card form-card" aria-label="Add Transaction">
+        <h2 class="card-title">Add Transaction</h2>
+
+        <div class="type-toggle">
+          <button id="incomeBtn" class="toggle-btn active-income" data-type="income">Income</button>
+          <button id="expenseBtn" class="toggle-btn" data-type="expense">Expense</button>
+        </div>
+
+        <form id="transactionForm" novalidate>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" placeholder="e.g. Salary, Groceries…" autocomplete="off" required />
+            <span class="error-msg" id="descError">Please enter a description.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Amount (₹)</label>
+            <input type="number" id="amount" placeholder="0.00" min="0.01" step="0.01" required />
+            <span class="error-msg" id="amtError">Please enter a valid amount.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category">
+              <option value="General">General</option>
+              <option value="Food">🍔 Food</option>
+              <option value="Transport">🚌 Transport</option>
+              <option value="Shopping">🛍 Shopping</option>
+              <option value="Health">💊 Health</option>
+              <option value="Entertainment">🎬 Entertainment</option>
+              <option value="Salary">💼 Salary</option>
+              <option value="Other">📦 Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" required />
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn-primary">Add Income</button>
+        </form>
+      </section>
+
+      <!-- Transaction History -->
+      <section class="card history-card" aria-label="Transaction History">
+        <div class="history-header">
+          <h2 class="card-title">History</h2>
+          <div class="filter-group">
+            <select id="filterCategory" aria-label="Filter by category">
+              <option value="All">All Categories</option>
+              <option value="General">General</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Health">Health</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Salary">Salary</option>
+              <option value="Other">Other</option>
+            </select>
+            <select id="filterType" aria-label="Filter by type">
+              <option value="All">All Types</option>
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </div>
+        </div>
+
+        <ul id="transactionList" class="transaction-list" aria-live="polite">
+          <li class="empty-state" id="emptyState">
+            <span>📭</span>
+            <p>No transactions yet. Add one above!</p>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
