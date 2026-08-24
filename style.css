@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --bg: #f3f4f8;
   --surface: #ffffff;
