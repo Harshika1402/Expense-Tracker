@@ -67,6 +67,19 @@ function showToast(message, duration = 2800) {
   setTimeout(() => toast.classList.remove('show'), duration);
 }
 
+function showConfirm(message, onConfirm) {
+  const overlay = document.getElementById('confirmOverlay');
+  document.getElementById('confirmMsg').textContent = message;
+  overlay.hidden = false;
+  overlay.querySelector('#confirmOk').onclick = () => {
+    overlay.hidden = true;
+    onConfirm();
+  };
+  overlay.querySelector('#confirmCancel').onclick = () => {
+    overlay.hidden = true;
+  };
+}
+
 // ===== Type Toggle =====
 incomeBtn.addEventListener('click', () => setType('income'));
 expenseBtn.addEventListener('click', () => setType('expense'));
@@ -179,12 +192,12 @@ clearAllBtn.addEventListener('click', () => {
     showToast('Nothing to clear!');
     return;
   }
-  if (confirm('Are you sure you want to delete all transactions? This cannot be undone.')) {
+  showConfirm('Are you sure you want to delete all transactions? This cannot be undone.', () => {
     transactions = [];
     saveData();
     renderAll();
     showToast('🗑 All transactions cleared.');
-  }
+  });
 });
 
 // ===== Export CSV =====

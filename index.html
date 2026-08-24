@@ -154,6 +154,18 @@
   <!-- Toast Notification -->
   <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
 
+  <!-- Custom Confirm Modal -->
+  <div id="confirmOverlay" class="confirm-overlay" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" hidden>
+    <div class="confirm-box">
+      <p id="confirmTitle" class="confirm-title">⚠️ Confirm Action</p>
+      <p id="confirmMsg" class="confirm-msg"></p>
+      <div class="confirm-actions">
+        <button id="confirmCancel" class="btn-outline">Cancel</button>
+        <button id="confirmOk" class="btn-danger">Yes, delete</button>
+      </div>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 </html>
