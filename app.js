@@ -235,6 +235,28 @@ function updateSummary() {
   else if (balance < 0) card.classList.add('balance-negative');
 }
 
+// ===== Monthly Summary =====
+function updateMonthly() {
+  const now = new Date();
+  const yr  = now.getFullYear();
+  const mo  = now.getMonth();
+  const monthTx = transactions.filter(t => {
+    const d = new Date(t.date + 'T00:00:00');
+    return d.getFullYear() === yr && d.getMonth() === mo;
+  });
+  const mIncome  = monthTx.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
+  const mExpense = monthTx.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
+  const mNet     = mIncome - mExpense;
+
+  document.getElementById('monthLabel').textContent =
+    now.toLocaleString('en-IN', { month: 'long', year: 'numeric' });
+  document.getElementById('monthIncome').textContent  = formatINR(mIncome);
+  document.getElementById('monthExpense').textContent = formatINR(mExpense);
+  const netEl = document.getElementById('monthNet');
+  netEl.textContent = (mNet < 0 ? '-' : '') + formatINR(mNet);
+  netEl.style.color = mNet >= 0 ? 'var(--income)' : 'var(--expense)';
+}
+
 // ===== Render List =====
 function renderList() {
   const catFilter    = filterCat.value;
@@ -300,6 +322,7 @@ txList.addEventListener('click', (e) => {
 // ===== Render Everything =====
 function renderAll() {
   updateSummary();
+  updateMonthly();
   renderList();
 }
 

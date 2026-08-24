@@ -197,6 +197,50 @@ body.dark {
   background: rgba(255,255,255,0.25);
 }
 
+/* ===== Monthly Summary Bar ===== */
+.monthly-bar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+
+.monthly-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.monthly-stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.monthly-item {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.monthly-sep {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.income-text { color: var(--income); font-weight: 600; }
+.expense-text { color: var(--expense); font-weight: 600; }
+
 /* ===== Main Grid ===== */
 .main-grid {
   display: grid;
