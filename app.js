@@ -227,6 +227,12 @@ function updateSummary() {
   totalIncome.textContent  = formatINR(income);
   totalExpense.textContent = formatINR(expense);
   totalBalance.textContent = (balance < 0 ? '-' : '') + formatINR(balance);
+
+  // Color-code the balance card
+  const card = document.querySelector('.balance-card');
+  card.classList.remove('balance-positive', 'balance-negative');
+  if (balance > 0) card.classList.add('balance-positive');
+  else if (balance < 0) card.classList.add('balance-negative');
 }
 
 // ===== Render List =====
