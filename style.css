@@ -587,6 +587,26 @@ body.dark {
 .tx-amount.income-amount { color: var(--income); }
 .tx-amount.expense-amount { color: var(--expense); }
 
+.tx-emoji {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.cat-chip {
+  display: inline-block;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-right: 3px;
+}
+
 .tx-delete {
   background: none;
   border: none;

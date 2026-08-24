@@ -61,6 +61,16 @@ function generateId() {
   return '_' + Math.random().toString(36).substr(2, 9);
 }
 
+const CATEGORY_EMOJI = {
+  General: '📌', Food: '🍔', Transport: '🚌',
+  Shopping: '🛍', Health: '💊', Entertainment: '🎬',
+  Salary: '💼', Other: '📦'
+};
+
+function getCategoryEmoji(cat) {
+  return CATEGORY_EMOJI[cat] || '📌';
+}
+
 function showToast(message, duration = 2800) {
   toast.textContent = message;
   toast.classList.add('show');
@@ -305,9 +315,10 @@ function renderList() {
       const li = document.createElement('li');
       li.className = `transaction-item ${t.type}-item`;
       li.innerHTML = `
+        <span class="tx-emoji" aria-hidden="true">${getCategoryEmoji(t.category)}</span>
         <div class="tx-info">
           <p class="tx-desc">${escapeHtml(t.description)}</p>
-          <p class="tx-meta">${t.category} &bull; ${formatDate(t.date)}</p>
+          <p class="tx-meta"><span class="cat-chip">${t.category}</span> ${formatDate(t.date)}</p>
         </div>
         <span class="tx-amount ${t.type}-amount">
           ${t.type === 'income' ? '+' : '-'}${formatINR(t.amount)}
