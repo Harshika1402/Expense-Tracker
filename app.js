@@ -13,6 +13,7 @@ const incomeBtn     = document.getElementById('incomeBtn');
 const expenseBtn    = document.getElementById('expenseBtn');
 const txList        = document.getElementById('transactionList');
 const emptyState    = document.getElementById('emptyState');
+const exportBtn     = document.getElementById('exportBtn');
 const clearAllBtn   = document.getElementById('clearAllBtn');
 const filterCat     = document.getElementById('filterCategory');
 const filterType    = document.getElementById('filterType');
@@ -167,6 +168,31 @@ clearAllBtn.addEventListener('click', () => {
     renderAll();
     showToast('🗑 All transactions cleared.');
   }
+});
+
+// ===== Export CSV =====
+exportBtn.addEventListener('click', () => {
+  if (transactions.length === 0) {
+    showToast('No transactions to export!');
+    return;
+  }
+  const header = ['Date', 'Description', 'Category', 'Type', 'Amount (INR)'];
+  const rows = transactions.map(t => [
+    t.date,
+    '"' + t.description.replace(/"/g, '""') + '"',
+    t.category,
+    t.type,
+    (t.type === 'expense' ? '-' : '') + t.amount.toFixed(2)
+  ]);
+  const csvContent = [header, ...rows].map(r => r.join(',')).join('\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'transactions_' + new Date().toISOString().slice(0, 10) + '.csv';
+  link.click();
+  URL.revokeObjectURL(url);
+  showToast('📥 CSV downloaded!');
 });
 
 // ===== Filters =====

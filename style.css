@@ -59,6 +59,30 @@ body {
   letter-spacing: -0.3px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-export {
+  padding: 8px 16px;
+  background: transparent;
+  color: var(--income);
+  border: 1.5px solid var(--income);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn-export:hover {
+  background: var(--income);
+  color: #fff;
+}
+
 /* ===== Container ===== */
 .container {
   max-width: 1000px;
