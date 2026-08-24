@@ -21,6 +21,7 @@ const totalBalance  = document.getElementById('totalBalance');
 const totalIncome   = document.getElementById('totalIncome');
 const totalExpense  = document.getElementById('totalExpense');
 const toast         = document.getElementById('toast');
+const searchInput   = document.getElementById('searchInput');
 
 // ===== Helpers =====
 function saveData() {
@@ -195,9 +196,10 @@ exportBtn.addEventListener('click', () => {
   showToast('📥 CSV downloaded!');
 });
 
-// ===== Filters =====
+// ===== Filters & Search =====
 filterCat.addEventListener('change', renderList);
 filterType.addEventListener('change', renderList);
+searchInput.addEventListener('input', renderList);
 
 // ===== Update Summary =====
 function updateSummary() {
@@ -212,13 +214,15 @@ function updateSummary() {
 
 // ===== Render List =====
 function renderList() {
-  const catFilter  = filterCat.value;
-  const typeFilter = filterType.value;
+  const catFilter    = filterCat.value;
+  const typeFilter   = filterType.value;
+  const searchQuery  = searchInput.value.trim().toLowerCase();
 
   const filtered = transactions.filter(t => {
-    const matchCat  = catFilter  === 'All' || t.category === catFilter;
-    const matchType = typeFilter === 'All' || t.type === typeFilter;
-    return matchCat && matchType;
+    const matchCat    = catFilter  === 'All' || t.category === catFilter;
+    const matchType   = typeFilter === 'All' || t.type === typeFilter;
+    const matchSearch = !searchQuery || t.description.toLowerCase().includes(searchQuery);
+    return matchCat && matchType && matchSearch;
   });
 
   // Remove existing items (keep empty state)
